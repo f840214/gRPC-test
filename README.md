@@ -1,13 +1,14 @@
 # 在創建新的 Node.js 並安裝相關的套件
 ```
 $ npm init -y
-$ npm install grpc @grpc/proto-loader
+$ npm install grpc @grpc/grpc-js
 ```
 # 創建 .proto 文件：在項目文件夾中
 # 生成 gRPC 代碼：在終端中運行以下命令，將 .proto 文件轉換為 gRPC 相關的 JavaScript 代碼
 
 ```
 $ npx grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./ --grpc_out=./ --proto_path=./ your.proto
+
 ```
 
 * --js_out=import_style=commonjs,binary:./ 

@@ -1,4 +1,4 @@
-const grpc = require('grpc');
+const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
 
 // 載入 .proto 文件
@@ -17,10 +17,11 @@ function add(call, callback) {
 const server = new grpc.Server();
 server.addService(calculatorPackage.Calculator.service, {
   Add: add,
-  Sub: sub
+  // Sub: sub
 });
 
 // 啟動服務器
-server.bind('localhost:50051', grpc.ServerCredentials.createInsecure());
-console.log('Server running at localhost:50051');
-server.start();
+server.bindAsync('localhost:50051', grpc.ServerCredentials.createInsecure(), () => {
+  server.start();
+  console.log('Server started on port 50051');
+});
